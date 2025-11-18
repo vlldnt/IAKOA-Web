@@ -23,12 +23,69 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Backend API pour IAKOA - Application de gestion d'événements et de créateurs.
+
+### Technologies utilisées
+
+- **NestJS** - Framework Node.js progressif
+- **Prisma** - ORM moderne pour TypeScript
+- **PostgreSQL** - Base de données relationnelle
+- **JWT** - Authentification par token
+- **bcrypt** - Hachage sécurisé des mots de passe
+- **class-validator** - Validation des données
+
+### Fonctionnalités implémentées
+
+- ✅ CRUD complet pour les utilisateurs
+- ✅ Système d'authentification JWT
+- ✅ Hachage sécurisé des mots de passe
+- ✅ Validation des données avec class-validator
+- ✅ Gestion Prisma avec PostgreSQL
+- ✅ Routes d'inscription et de connexion
+
+### Documentation API
+
+Consultez le fichier [API_USERS.md](./API_USERS.md) pour la documentation complète des routes.
 
 ## Project setup
 
+### 1. Installation des dépendances
+
 ```bash
 $ npm install
+```
+
+### 2. Configuration de l'environnement
+
+Copiez le fichier `.env.example` vers `.env` et configurez vos variables :
+
+```bash
+$ cp .env.example .env
+```
+
+Variables à configurer :
+- `DATABASE_URL` : URL de connexion PostgreSQL
+- `JWT_SECRET` : Secret pour signer les tokens JWT
+- `PORT` : Port du serveur (défaut: 3000)
+
+### 3. Configuration de Prisma
+
+Générez le client Prisma :
+
+```bash
+$ npx prisma generate
+```
+
+Créez et appliquez les migrations :
+
+```bash
+$ npx prisma migrate dev --name init
+```
+
+Pour visualiser votre base de données avec Prisma Studio :
+
+```bash
+$ npx prisma studio
 ```
 
 ## Compile and run the project

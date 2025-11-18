@@ -57,3 +57,10 @@
 | `url` | String | URL de l'image/vidéo |
 | `type` | String | Enum: `image` ou `video` |
 | `eventId` | UUID | FK vers Event.id |
+
+
+
+---
+Databse Dev:
+
+Connection à la db ```psql -U olos -d "IAKOA-backend" ```
