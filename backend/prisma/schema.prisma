@@ -14,17 +14,18 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  name      String   @db.VarChar(30)
-  password  String
-  email     String   @unique
-  isCreator Boolean  @default(false)
+  name         String   @db.VarChar(30)
+  password     String
+  email        String   @unique
+  isCreator    Boolean  @default(false)
+  refreshToken String?  // Token de rafraîchissement hashé
 
-  companies String[] // FK vers Company.id (liste)
-  favorites String[] // FK vers Event.id (liste)
+  companies    String[] // FK vers Company.id (liste)
+  favorites    String[] // FK vers Event.id (liste)
 
   @@map("users")
 }

@@ -1,4 +1,5 @@
 import { Injectable, ConflictException, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { User, Prisma } from '@prisma/client';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
@@ -58,7 +59,7 @@ export class UsersService {
     return this.toResponseDto(user);
   }
 
-  async findByEmail(email: string) {
+  async findByEmail(email: string): Promise<User | null> {
     return this.prisma.user.findUnique({
       where: { email },
     });
@@ -132,8 +133,8 @@ export class UsersService {
     return this.toResponseDto(user);
   }
 
-  private toResponseDto(user: any): UserResponseDto {
-    const { password, ...result } = user;
+  private toResponseDto(user: User): UserResponseDto {
+    const { password, refreshToken, ...result } = user;
     return result;
   }
 }
