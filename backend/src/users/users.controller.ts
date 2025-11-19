@@ -13,28 +13,18 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { LoginUserDto } from './dto/login-user.dto';
-
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   /**
-   * POST /users - Créer un nouvel utilisateur
+   * POST /users - Créer un nouvel utilisateur (création administrative)
+   * Pour l'inscription publique, utiliser /auth/register
    */
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body(ValidationPipe) createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
-  }
-
-  /**
-   * POST /users/login - Connexion utilisateur
-   */
-  @Post('login')
-  @HttpCode(HttpStatus.OK)
-  login(@Body(ValidationPipe) loginUserDto: LoginUserDto) {
-    return this.usersService.validateUser(loginUserDto);
   }
 
   /**
