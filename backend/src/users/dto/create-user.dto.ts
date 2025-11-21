@@ -1,4 +1,5 @@
-import { IsEmail, IsString, MaxLength, IsOptional, IsBoolean, Matches, MinLength } from 'class-validator';
+// Création utilisateur: valider nom, email, mot de passe.
+import { IsEmail, IsString, MaxLength, IsOptional, IsBoolean, Matches, IsUUID } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
@@ -11,11 +12,16 @@ export class CreateUserDto {
   })
   email: string;
 
-  @IsString()
-  @MinLength(8, { message: 'Le mot de passe doit contenir au moins 8 caractères' })
+  @Matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9\s]).{8,}$/, {
+    message:
+      'Mot de passe: min 8, 1 majuscule, 1 chiffre, 1 spécial',
+  })
   password: string;
 
   @IsOptional()
   @IsBoolean()
   isCreator?: boolean;
+
+  @IsUUID()
+  id: string;
 }

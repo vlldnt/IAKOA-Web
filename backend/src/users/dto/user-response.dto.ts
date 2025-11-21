@@ -1,3 +1,4 @@
+// Réponse API utilisateur: format public des données.
 export class UserResponseDto {
   id: string;
   createdAt: Date;
@@ -5,6 +6,4 @@ export class UserResponseDto {
   name: string;
   email: string;
   isCreator: boolean;
-  companies: string[];
-  favorites: string[];
 }

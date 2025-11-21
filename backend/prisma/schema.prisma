@@ -18,13 +18,13 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name            String         @db.VarChar(30)
-  password        String
-  email           String         @unique
-  isCreator       Boolean        @default(false)
-  refreshToken    String?
-  companies       Company[]
-  userFavorites   UserFavorite[]
+  name          String         @db.VarChar(30)
+  password      String
+  email         String         @unique
+  isCreator     Boolean        @default(false)
+  refreshToken  String?
+  companies     Company[]
+  userFavorites UserFavorite[]
 
   @@map("users")
 }
@@ -35,9 +35,11 @@ model Company {
   updatedAt DateTime @updatedAt
 
   name           String  @db.VarChar(100)
-  description    String  @db.VarChar(300)
+  description    String? @db.VarChar(300)
   website        String?
   socialNetworks Json?
+  siren          String  @unique @db.Char(9)
+  isValidated    Boolean @default(false)
   ownerId        String
   owner          User    @relation(fields: [ownerId], references: [id])
   events         Event[]

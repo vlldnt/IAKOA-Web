@@ -31,8 +31,6 @@ export class UsersService {
         email: createUserDto.email,
         password: hashedPassword,
         isCreator: createUserDto.isCreator || false,
-        companies: [],
-        favorites: [],
       },
     });
 
